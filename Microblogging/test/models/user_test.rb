@@ -11,17 +11,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "name should be present" do
-    @user.name = ""
+    @user.name = "     "
     assert_not @user.valid?
   end
 
-  test "email should be present" do
-    @user.email = "     "
+  test "name should under 50 chars" do
+    @user.name="a" * 51
     assert_not @user.valid?
   end
 
-  test "email should be present" do
-    @user.email = "     "
+  test "email unnder 255 chars" do
+    @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
 
