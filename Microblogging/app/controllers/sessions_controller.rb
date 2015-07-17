@@ -4,8 +4,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    render 'new'
-  end
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
+      # Log the user in and redirect to the user's show page.
+    else
+      # Create an error message.
+      render 'new'
+    en
 
   def destroy
   end
